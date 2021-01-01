@@ -25,11 +25,8 @@ class Board extends React.Component {
 
   render(){
   return(
-    <div>
-      <div><button onClick={() =>console.log("clickBack")}>Back</button>
-      <button onClick={() => console.log("clickForward")}>Forward</button>
-    </div><br />
 
+<div>
       <div className="board-row">
         {this.renderSquare(0)}
         {this.renderSquare(1)}
@@ -60,6 +57,7 @@ class Game extends React.Component {
       xIsNext: true,
       stepNumber: 0,
       stepMap: new Map(),
+      buttonClicked: '',
     };
   }
 
@@ -67,6 +65,7 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xIsNext: (step%2)===0,
+      buttonClicked: step,
     })
   }
   //i goes 0-8, 01,1,2 first row, 3,4,5 second,, 678 third
@@ -101,11 +100,13 @@ class Game extends React.Component {
 
     const moves = history.map((step,move) => {
       console.log("loop stepmap  = "+this.state.stepMap.get(move+1));
+
       const str = move? "row = "+this.state.stepMap.get(move).row+" col = "+this.state.stepMap.get(move).col:"";
       const desc = move?"Move to "+move+" at "+str : "Go to start";
       return (
+
         <li key={move}>
-          <button onClick={()=> this.jumpTo(move)}>{desc}</button>
+          <button className={move===this.state.buttonClicked?"buttonClick":""} onClick={()=> this.jumpTo(move)}>{desc}</button>
         </li>
       );
     })

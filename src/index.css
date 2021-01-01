@@ -20,16 +20,20 @@ ol, ul {
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
+  float: right;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 34px;
   margin-right: -1px;
   margin-top: -1px;
-  padding: 0;
+  padding: 1;
   text-align: center;
   width: 34px;
+}
+
+.buttonClick{
+  background: #FF8C00
 }
 
 .square:focus {
